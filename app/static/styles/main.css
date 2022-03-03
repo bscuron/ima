@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 2fr 10fr 1fr;
+    height: 100vh;
+    width: 100vw;
+}
+
+div.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+div.header > h1{
+    font-size: calc(1em + 2.5vmin);
+}
+
+div.output{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.output > img{
+    width: min(70vw, 50vh);
+}
+
+div.footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div.footer > img#back_arrow{
+    padding-left: 2.5%;
+    width: min(5vw, 7vh);
+}
+
+div.footer > img#download_symbol{
+    padding-right: 2.5%;
+    width: min(5vw, 7vh);
+}
+
+div.footer > img:hover{
+    cursor: pointer;
+}
+
+div.settings{
+    display: flex;
+    justify-content: center;
+}
+
+div.settings > form > h2{
+    font-size: calc(1em + 2.5vmin);
+    padding-top: min(2vw, 1vh);
+    padding-bottom: min(2vw, 1vh);
+    padding-top: min(3vw, 2vh);
+}
+
+div.settings > form > ul{
+    list-style-type: none;
+}
+
+div.settings > form > ul > li{
+    padding-top: 1vh;
+    /* font-size: calc(1em + 0.75vmin); */
+    font-size: calc(1em + 1.25vmin);
+}
+
+div.settings > form > ul > li > input{
+    margin-right: 1vw;
+}
+
+input[type='submit']{
+    padding: 3px;
+}
+
+div.settings > form > label{
+    font-size: calc(1em + 0.75vmin);
+}
