@@ -2,16 +2,8 @@
 <html>
     <head>
         <title>Image Processing Application</title>
-        <link href="/static/styles/main.css" rel="stylesheet" type="text/css">
+        <link href="/static/styles/index.css" rel="stylesheet" type="text/css">
     </head>
-    <script>
-        window.onload = function(){
-            let msg = '{{errormsg}}';
-            if(msg.length > 0){
-                alert(msg);
-            }
-        };
-    </script>
     <body>
         <div class="header">
             <h1>Image Processing Application</h1>
@@ -20,8 +12,8 @@
         <div class="settings">
             <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <h2>Select Filter:</h2>
                 <ul>
+                    <h2>Select Filter:</h2>
                     <li><input type="radio" name="preset" value="gray" id="gray" required>Gray</li>
                     <li><input type="radio" name="preset" value="sepia" id="sepia">Sepia</li>
                     <li><input type="radio" name="preset" value="poster" id="poster">Poster</li>
@@ -29,15 +21,19 @@
                     <li><input type="radio" name="preset" value="edge" id="edge">Edge</li>
                     <li><input type="radio" name="preset" value="solar" id="solar">Solar</li>
                 </ul>
-                <h2>Upload Image:</h2>
+
                 <ul>
-                <li>{{form.non_field_errors}}</li>
-                <li>{{form.myfilefield.errors}}{{form.myfilefield}}</li>
-                <li><input type="submit" value="Submit"></li>
+                    <h2>Upload Image:</h2>
+                    <li>{{form.non_field_errors}}</li>
+                    <li>{{form.myfilefield.errors}}{{form.myfilefield}}</li>
+                    <li><input type="submit" value="Submit"></li>
+                </ul>
             </form>
         </div>
 
+
         <div class="footer">
+            <b>{{errormsg}}</b>
         </div>
     </body>
 </html>
