@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-=)%gl9j5$)gp!ms+vmg^q*3t8_n83@(ny#*w$-mr=rlhzq0m4h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'project_1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/Users/benscuron/Documents/spring_2022/data_intensive_and_cloud_computing/project_1/app/templates/'],
+        'DIRS': ['/home/ec2-user/project_1/app/templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,12 +75,12 @@ WSGI_APPLICATION = 'project_1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+#DATABASES = {
+    #'default': {
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': BASE_DIR / 'db.sqlite3',
+    #}
+#}
 
 
 # Password validation
@@ -114,7 +114,7 @@ USE_I18N = True
 USE_TZ = True
 
 # Directory where user uploaded files are stored
-MEDIA_DIR='/Users/benscuron/Documents/spring_2022/data_intensive_and_cloud_computing/project_1/media/' 
+MEDIA_DIR='/home/ec2-user/project_1/media/' 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -126,10 +126,10 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/Users/benscuron/Documents/spring_2022/data_intensive_and_cloud_computing/project_1/app/static',
+    '/home/ec2-user/project_1/app/static',
 )
 
-OUTPUT_DIR = '/Users/benscuron/Documents/spring_2022/data_intensive_and_cloud_computing/project_1/app/static/output/'
+OUTPUT_DIR = '/home/ec2-user/project_1/app/static/output/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

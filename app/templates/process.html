@@ -12,7 +12,7 @@
             <img src="/static/output/{{outputfilename}}">
         </div>
         <div class="footer">
-            <img id="back_arrow" src="/static/back_arrow.png" onclick="location.href='http://localhost:8000/app/'">
+            <img id="back_arrow" src="/static/back_arrow.png" onclick="history.back()">
             <i>Click back arrow to return to previous page. Click download icon to download processed image.</i>
             <img id="download_symbol" src="/static/download_symbol.png" onclick="location.href='https://{{bucket}}.s3.amazonaws.com/{{outputfilename}}'">
         </div>
