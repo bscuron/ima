@@ -19,7 +19,7 @@ div.header{
 }
 
 div.header > h1{
-    font-size: calc(1em + 2.5vmin);
+    font-size: calc((6vmin + 6vmax) / 2);
 }
 
 div.output{
@@ -50,4 +50,8 @@ div.footer > img#download_symbol{
 
 div.footer > img:hover{
     cursor: pointer;
+}
+
+div.footer > i{
+    font-size: calc((1.25vmin + 1.25vmax) / 2);
 }
