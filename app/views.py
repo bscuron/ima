@@ -4,6 +4,7 @@ from app.forms import UploadFileForm
 from PIL import Image, ImageOps,ImageFilter
 from django.templatetags.static import static
 import boto3
+from time import time_ns
 from project_1.settings import OUTPUT_DIR, MEDIA_DIR, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
 # Amazon AWS S3 Storage
@@ -14,7 +15,8 @@ def applyfilter(filename, preset):
     inputfile = MEDIA_DIR + filename
 
     f = filename.split('.')
-    outputfilename = f[0] + '-out.' + f[1]
+    # add time in ns to prevent caching of images
+    outputfilename = f[0] + '-' + str(time_ns()) + '.' + f[1]
     outputfile = OUTPUT_DIR + outputfilename
 
     image = Image.open(inputfile)
