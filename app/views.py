@@ -3,6 +3,7 @@ from django.template import RequestContext
 from app.forms import UploadFileForm
 from PIL import Image, ImageOps,ImageFilter
 from django.templatetags.static import static
+from django.contrib.staticfiles import finders
 import boto3
 from os.path import exists
 from time import time_ns
@@ -49,7 +50,7 @@ def applyfilter(filename, preset):
 
     image.save(outputfile)
 
-    while exists(outputfile) == False:
+    while True:
         continue
 
     return outputfilename
