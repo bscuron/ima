@@ -4,6 +4,7 @@ from app.forms import UploadFileForm
 from PIL import Image, ImageOps,ImageFilter
 from django.templatetags.static import static
 import boto3
+from os.path import isfile
 from time import time_ns
 from project_1.settings import OUTPUT_DIR, MEDIA_DIR, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
@@ -47,6 +48,10 @@ def applyfilter(filename, preset):
         image = image.convert("RGB")
 
     image.save(outputfile)
+
+    while not isfile(outputfile):
+        continue
+
     return outputfilename
 
 def handle_uploaded_file(f,preset):
