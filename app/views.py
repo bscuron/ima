@@ -50,7 +50,7 @@ def applyfilter(filename, preset):
 
     image.save(outputfile)
 
-    while True:
+    while finders.find('output/' + outputfilename) is None:
         continue
 
     return outputfilename
