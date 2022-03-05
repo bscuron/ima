@@ -3,8 +3,6 @@ from django.template import RequestContext
 from app.forms import UploadFileForm
 from PIL import Image, ImageOps,ImageFilter
 from django.templatetags.static import static
-from django.contrib.staticfiles import finders
-import time
 import boto3
 from os.path import exists
 from time import time_ns
@@ -50,11 +48,6 @@ def applyfilter(filename, preset):
         image = image.convert("RGB")
 
     image.save(outputfile)
-
-    while finders.find('output/' + outputfilename) is None:
-        continue
-
-    time.sleep(5)
 
     return outputfilename
 
