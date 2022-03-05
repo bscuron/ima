@@ -4,7 +4,7 @@ from app.forms import UploadFileForm
 from PIL import Image, ImageOps,ImageFilter
 from django.templatetags.static import static
 import boto3
-from os.path import isfile
+from os.path import exists
 from time import time_ns
 from project_1.settings import OUTPUT_DIR, MEDIA_DIR, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
@@ -49,7 +49,7 @@ def applyfilter(filename, preset):
 
     image.save(outputfile)
 
-    while not isfile(outputfile):
+    while exists(outputfile) == False:
         continue
 
     return outputfilename
