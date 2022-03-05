@@ -48,7 +48,7 @@ def applyfilter(filename, preset):
     return outputfilename
 
 def handle_uploaded_file(f,preset):
-    uploadfilename = 'media/' + f.name
+    uploadfilename = MEDIA_DIR + f.name
     with open(uploadfilename, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
