@@ -1,0 +1,109 @@
+Project 1 - Image Processing Application
+
+How to use my application:
+
+1. Go to url provided (p1alb-1325815710.us-east-1.elb.amazonaws.com/app)
+2. Select a filter you would like to apply (Click one of the radio buttons).
+3. Click the 'Choose File' button and upload an image. Please make sure that
+   the image submitted has a file extension.
+4. Click submit to apply the filter chosen from step 2 to the image chosen in
+   step 3.
+5. After submitting the uploaded file, you will be redirected to another page
+   where you can see your processed image. There is also an icon at the bottom
+   right of the page where you can click to download your processed image.
+6. If you have any questions, please email me at ben.scuron@temple.edu.
+
+Basic Flowchart of my Implementation:
+
+Front-end html page -> Elastic Load Balancing -> EC2 Instance (Apache Webserver) hosting Django Application -> Processed Image Storage (S3)
+
+Steps to complete:
+
+1. Create an EC2 instance. I added a subnet domain because the elastic load
+   balancer requires one.
+
+2. Install httpd (Apache) package. This is necessary to turn our EC2 instance into a webserver.
+   `sudo yum install httpd`
+
+4. Install python3 virtual environment package.
+   `python3 -m pip install --user virtualenv`
+
+5. Install Django outside of virtual environment (Because there is a command to create a project template).
+   `pip3 install django`
+
+6. Create a Django project.
+   `django-admin startproject project_1`
+
+7. `cd` into the ./project_1 directory and create an app (our image processing application).
+   `python3 manage.py startapp app`
+
+8. Create a python3 virtual environment.
+   `virtualenv venv`
+
+9. Activate the virtual environment.
+   `source myprojectenv/bin/activate`
+
+10. Install python3 packages necessary to run our source code for the image processing application.
+    `pip3 install django boto3 mod-wsgi pillow`
+
+11. Edit ./project_1/project_1/settings.py to point to the correct directories. (Ex. static/ and media/ directories)
+
+12. Set AWS credentials in your shell environment. They will be retrieved in
+    setting.py (they are required to upload to S3).
+
+13. I then modified the example ./project_1/app/views.py given to us by the
+    professor to fit the project requirements. The example code seems to be a
+    little outdated. It was running on an older version of Python and Django. I
+    modified the code to also show an error message if an invalid file is
+    uploaded to the application. This is the main python code for this
+    application. The user uploaded file is processed by applying the filter
+    they selected on the index.html page. The processed image is then uploaded
+    to S3 storage.
+
+14. I recreated the index.html (file upload page) and process.hmtl
+    (show/download processed image pade) from scratch. I did not use the sample
+    provided because it seemed overly complicated for our use case. I also made
+    sure that the web pages I made were responsive (look good on mobile and
+    desktop). The process.hmtl page displays the processed image. The way I did
+    this was by using a <img> tag with src set to the url where the processed
+    image is stored in S3. There is also a download button on process.html.
+    When clicked, this allows the user of the application to retrieve their
+    processed image from S3 storage.
+
+15. The hardest part of the project (for me at least) was configuring the
+    Apache webserver. I did this by creating a new file in the EC2 instance. The
+    file I created is a configuration file for Apache so that it knows how to serve
+    our Django application. The file is usually located at
+    /etc/httpd/conf.d/django.conf, but I made a copy in the zip file submitted
+    so that you can see how I configured it. Basically, I had to let Apache
+    know where my static files, media files, project root, and python path was
+    located. This part took my a while because it was my first time ever
+    configuring an Apache webserver. I think the next time I do it, it should
+    be fairly simple.
+
+16. Now that all of the html pages, Apache configuration files, and python code
+    is complete we should be able to start the Apache webserver. This can be done
+    by running the shell command:
+    `systemctl start httpd`
+
+17. At this point, we have the front-end pages, EC2 Instance (Apache Webserver)
+    hosting Django Application, and S3 storage (storing our processed images).
+    We are still missing the ELB (elastic load balancer). The load balancer is
+    useful because it will try to evenly distribute the load between EC2
+    instances.
+
+18. To setup a load balancer, you need more than one instance. So, I cloned my
+    EC2 instance that I just set up. The original instance and the cloned
+    instance will share the 'load' between each other. However, both instances
+    will still upload to S3 storage. To the user, they will not even be able to
+    tell that more than one instance is being used.
+
+19. I then configured the ELB to work with the original instance and the cloned
+    instance. Another useful feature of the ELB is that is provides a elastic ip
+    address. This means that when I stop my EC2 instances and restart them, the IP
+    address will be the same.
+
+20. At this point, all that is needed to run the image processing application
+    is to start both EC2 instances and go the the url provided by the ELB. Remember
+    at the end of the ELB url make sure to add /app because that is where the
+    application is located.
